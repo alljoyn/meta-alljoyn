@@ -1,0 +1,19 @@
+diff -Naur a/services/base_tcl/SConstruct b/services/base_tcl/SConstruct
+--- a/services/base_tcl/SConstruct	2016-05-04 06:50:54.867153320 +0200
++++ b/services/base_tcl/SConstruct	2016-05-04 06:25:10.631074426 +0200
+@@ -181,6 +181,7 @@
+ if not env.GetOption('clean'):
+     config = Configure(env)
+     SetupDistEnvironment(config, 'ajtcl', 'ajtcl/aj_bus.h', 'AJTCL_DIST', '../../core/ajtcl/dist')
++    SetupDistEnvironment(config, 'ajtcl_services_config', 'ajtcl/services/ConfigService.h', 'AJTCL_DIST', '../../core/ajtcl/dist')
+     config.AddTests({
+          'CheckCommand' : CheckCommand,
+          'CheckAJFuncWithArgs' : CheckAJFuncWithArgs,
+@@ -189,6 +190,7 @@
+     found_ws = config.CheckCommand('uncrustify')
+     dep_libs = [
+         config.CheckAJLib('ajtcl', 'ajtcl/aj_bus.h', 'AJTCL_DIST'),
++        config.CheckAJLib('ajtcl_services_config', 'ajtcl/services/ConfigService.h', 'AJTCL_DIST'),
+     ]
+     enable_onboarding = config.CheckAJFuncWithArgs('AJ_EnableSoftAP', 'NULL, 0, NULL, 0', '#include <ajtcl/aj_wifi_ctrl.h>\n', 'c')
+     env = config.Finish()
